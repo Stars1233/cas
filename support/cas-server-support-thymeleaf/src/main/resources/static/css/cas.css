@@ -7,8 +7,10 @@
     --mdc-theme-body: rgb(27, 39, 51);
     --mdc-theme-error: #a20323;
     --cas-theme-primary: #114377;
+    --cas-theme-button-bg-hover: #1678d8;
     --cas-theme-primary-bg: rgba(21, 62, 80, 0.2);
     --cas-theme-button-bg: #26418f;
+    --cas-theme-button-bg-lite: #1e78d0;
     --cas-theme-primary-light: #006d85;
     --cas-theme-secondary: #018077;
     --cas-theme-success: #74C163;
@@ -507,6 +509,10 @@ form button i.mdi {
     background-color: var(--mdc-theme-error, #a20323) !important;
 }
 
+span button.toolbar {
+    background-color: var(--cas-theme-button-bg-lite, dodgerblue) !important;
+}
+
 .mdc-button--outline:not(:disabled, .reveal-password) {
     background-color: var(--cas-theme-secondary, #018077);
     border-radius: 8px 8px 8px 8px;
@@ -515,11 +521,23 @@ form button i.mdi {
 
 .mdc-button--raised:not(:disabled, .reveal-password) {
     margin-right: 4px;
-    border-radius: 8px 8px 8px 8px;
+    border-radius: 9px 9px 9px 9px;
     filter: drop-shadow(2px 2px 4px #023b53);
     background-color: var(--cas-theme-primary, #153E50);
+    cursor: default;
 }
 
+.mdc-button--raised:not(:disabled, .reveal-password):hover {
+    background-color: var(--cas-theme-button-bg-hover, dodgerblue);
+    transform: scale(1.08);
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+}
+
+.mdc-button--lg {
+    width: 180px;
+    height: 48px;
+}
 
 .list-unstyled {
     padding-left: 0;
@@ -568,7 +586,15 @@ form button i.mdi {
 }
 
 .h-350px {
-    height: 450px;
+    height: 350px;
+}
+
+.h-250px {
+    height: 250px;
+}
+
+.h-150px {
+    height: 150px;
 }
 
 .h-25 {
@@ -779,7 +805,32 @@ select.palantir {
     margin-right: auto;
 }
 
-/* IE flex fix */
+
+/** jQuery UI **/
+
+.ui-tabs-active {
+    background: var(--cas-theme-primary) !important;
+}
+
+.ui-widget, .ui-widget button {
+    font-family: var(--mdc-typography-font-family) !important;
+    font-size: unset;
+}
+.ui-widget-content, .ui-widget-header {
+    background: unset;
+}
+
+.ui-widget-header {
+    border:unset;
+}
+
+.ui-tabs .ui-tabs-nav li {
+    border-bottom: 1px solid var(--cas-theme-button-bg-lite);
+    margin-right: 0.07em;
+}
+
+/***************************/
+
 
 #main-content {
     margin-right: 10px;
@@ -792,14 +843,9 @@ select.palantir {
 @media all and (min-width: 768px) {
     .login-section {
         flex: 1 1 500px;
-        /* according to flexbugs, flex-basis should be explicitly set for IE */
-        /* https://github.com/philipwalton/flexbugs#flexbug-4 */
     }
 }
 
-/* flex-basis: auto works in IE with the column view,
-     but a specific value needs to be set for row view
-   */
 
 /* fix for not showing password reveal icon on MSEdge and MSIE */
 .pwd::-ms-reveal,

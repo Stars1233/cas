@@ -61,8 +61,7 @@ public class HazelcastTicketRegistry extends AbstractTicketRegistry implements A
 
     @Override
     public Ticket updateTicket(final Ticket ticket) throws Exception {
-        addTicket(ticket);
-        return ticket;
+        return addTicket(ticket);
     }
 
     @Override
@@ -265,11 +264,11 @@ public class HazelcastTicketRegistry extends AbstractTicketRegistry implements A
     public Stream<? extends Ticket> stream() {
         return ticketCatalog
             .findAll()
-            .parallelStream()
+            .stream()
             .map(metadata -> getTicketMapInstanceByMetadata(metadata).values())
             .flatMap(tickets -> {
                 var resultStream = tickets
-                    .parallelStream()
+                    .stream()
                     .map(HazelcastTicketDocument::getTicket);
                 if (properties.getPageSize() > 0) {
                     resultStream = resultStream.limit(properties.getPageSize());

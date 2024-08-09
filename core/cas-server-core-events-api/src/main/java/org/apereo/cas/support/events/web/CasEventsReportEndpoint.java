@@ -111,7 +111,7 @@ public class CasEventsReportEndpoint extends BaseCasRestActuatorEndpoint {
              val zipIn = new ZipInputStream(bais)) {
             var entry = zipIn.getNextEntry();
             while (entry != null) {
-                if (!entry.isDirectory()) {
+                if (!entry.isDirectory() && !entry.getName().contains("..") && entry.getName().endsWith(".json")) {
                     val requestBody = IOUtils.toString(zipIn, StandardCharsets.UTF_8);
                     val casEvent = MAPPER.readValue(requestBody, CasEvent.class);
                     eventRepository.save(casEvent);

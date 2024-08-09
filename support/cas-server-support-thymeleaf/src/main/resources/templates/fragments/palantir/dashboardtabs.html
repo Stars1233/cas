@@ -8,10 +8,22 @@
 <body>
 <span th:fragment="main">
 
-    <div id="errorBanner" class="mb-4 d-none banner banner-danger alert alert-danger">
-        <h2>Something went wrong!</h2>
-        <p id="errorDetails"></p>
-    </div>
+    <aside class="mdc-snackbar" id="errorBanner">
+      <div class="mdc-snackbar__surface" role="status" aria-relevant="additions">
+        <div class="mdc-snackbar__label" aria-atomic="false">
+        </div>
+          <div class="mdc-snackbar__actions" aria-atomic="true">
+<!--              <button type="button" class="mdc-button mdc-snackbar__action">-->
+<!--                <div class="mdc-button__ripple"></div>-->
+<!--                <span class="mdc-button__label">DISMISS</span>-->
+<!--              </button>-->
+              
+              <button class="mdc-icon-button mdc-snackbar__dismiss" title="Dismiss">
+                  <i class="mdc-tab__icon mdi mdi-window-close" aria-hidden="true"></i>
+              </button>
+          </div>
+      </div>
+    </aside>
 
     <div class="mdc-tab-bar" role="tablist" id="dashboardTabBar">
         <div class="mdc-tab-scroller d-none">
@@ -19,7 +31,7 @@
                 <div class="mdc-tab-scroller__scroll-content">
                     <button class="mdc-tab mdc-tab--active" role="tab" aria-selected="true">
                         <span class="mdc-tab__content">
-                            <span class="mdc-tab__text-label"><i class="mdc-tab__icon mdi mdi-application"
+                            <span class="mdc-tab__text-label"><i class="mdc-tab__icon mdi mdi-apps"
                                                                  aria-hidden="true"></i>Applications</span>
                         </span>
                         <span class="mdc-tab-indicator mdc-tab-indicator--active">
@@ -52,7 +64,7 @@
                     </button>
                     <button class="mdc-tab" role="tab" aria-selected="true">
                           <span class="mdc-tab__content">
-                                <span class="mdc-tab__text-label"><i class="mdc-tab__icon mdi " aria-hidden="true"></i>Tasks</span>
+                                <span class="mdc-tab__text-label"><i class="mdc-tab__icon mdi-tire " aria-hidden="true"></i>Tasks</span>
                           </span>
                           <span class="mdc-tab-indicator">
                                 <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
@@ -95,8 +107,33 @@
                     </button>
                     <button class="mdc-tab" role="tab" aria-selected="true">
                           <span class="mdc-tab__content">
-                                <span class="mdc-tab__text-label"><i class="mdc-tab__icon mdi mdi-wrench"
-                                                                     aria-hidden="true"></i>Configuration</span>
+                                <span class="mdc-tab__text-label">
+                                    <i class="mdc-tab__icon mdi mdi-wrench"
+                                       aria-hidden="true"></i>Configuration</span>
+                          </span>
+                          <span class="mdc-tab-indicator">
+                                <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                          </span>
+                        <span class="mdc-tab__ripple"></span>
+                        <div class="mdc-tab__focus-ring"></div>
+                    </button>
+                    <button class="mdc-tab" role="tab" aria-selected="true">
+                          <span class="mdc-tab__content">
+                                <span class="mdc-tab__text-label">
+                                    <i class="mdc-tab__icon mdi mdi-card-account-details"
+                                       aria-hidden="true"></i>Person Directory</span>
+                          </span>
+                          <span class="mdc-tab-indicator">
+                                <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                          </span>
+                        <span class="mdc-tab__ripple"></span>
+                        <div class="mdc-tab__focus-ring"></div>
+                    </button>
+                    <button class="mdc-tab" role="tab" aria-selected="true">
+                          <span class="mdc-tab__content">
+                                <span class="mdc-tab__text-label">
+                                    <i class="mdc-tab__icon mdi mdi-account-check"
+                                       aria-hidden="true"></i>Authentication</span>
                           </span>
                           <span class="mdc-tab-indicator">
                                 <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
@@ -106,8 +143,9 @@
                     </button>
                      <button class="mdc-tab" role="tab" aria-selected="true">
                           <span class="mdc-tab__content">
-                                <span class="mdc-tab__text-label"><i class="mdc-tab__icon mdi mdi-card-account-details"
-                                                                     aria-hidden="true"></i>Person Directory</span>
+                                <span class="mdc-tab__text-label">
+                                    <i class="mdc-tab__icon mdi mdi-checkerboard"
+                                       aria-hidden="true"></i>Consent</span>
                           </span>
                           <span class="mdc-tab-indicator">
                                 <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
@@ -115,8 +153,30 @@
                         <span class="mdc-tab__ripple"></span>
                         <div class="mdc-tab__focus-ring"></div>
                     </button>
-
-
+                    <button class="mdc-tab" role="tab" aria-selected="true">
+                          <span class="mdc-tab__content">
+                                <span class="mdc-tab__text-label">
+                                    <i class="mdc-tab__icon mdi mdi-protocol"
+                                       aria-hidden="true"></i>Protocols</span>
+                          </span>
+                          <span class="mdc-tab-indicator">
+                                <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                          </span>
+                        <span class="mdc-tab__ripple"></span>
+                        <div class="mdc-tab__focus-ring"></div>
+                    </button>
+                    <button class="mdc-tab" role="tab" aria-selected="true">
+                          <span class="mdc-tab__content">
+                                <span class="mdc-tab__text-label">
+                                    <i class="mdc-tab__icon mdi mdi-account-lock"
+                                       aria-hidden="true"></i>Throttled Authentications</span>
+                          </span>
+                          <span class="mdc-tab-indicator">
+                                <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                          </span>
+                        <span class="mdc-tab__ripple"></span>
+                        <div class="mdc-tab__focus-ring"></div>
+                    </button>
                 </div>
             </div>
         </div>

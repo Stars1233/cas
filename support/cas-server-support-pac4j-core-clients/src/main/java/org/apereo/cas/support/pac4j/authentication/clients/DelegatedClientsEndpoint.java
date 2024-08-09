@@ -43,7 +43,7 @@ public class DelegatedClientsEndpoint extends BaseCasActuatorEndpoint {
      */
     @DeleteOperation
     @Operation(summary = "Clear loaded identity providers and rebuild from CAS configuration or other sources.")
-    public Map<String, Map<String, String>> reload() {
+    public Map<String, Map<String, Object>> reload() {
         val currentClients = clientFactory.getObject().rebuild();
         return buildClientMap(currentClients);
     }
@@ -55,21 +55,18 @@ public class DelegatedClientsEndpoint extends BaseCasActuatorEndpoint {
      */
     @ReadOperation
     @Operation(summary = "Load delegated identity provider clients from the configuration")
-    public Map<String, Map<String, String>> getClients() {
+    public Map<String, Map<String, Object>> getClients() {
         val currentClients = clientFactory.getObject().build();
         return buildClientMap(currentClients);
     }
 
-    private Map<String, Map<String, String>> buildClientMap(final Collection<BaseClient> currentClients) {
-        val clientsMap = new TreeMap<String, Map<String, String>>();
-        currentClients.forEach(client -> {
-            delegatedClientsEndpointContributors.ifAvailable(contributors ->
-                contributors
-                    .stream()
-                    .filter(contributor -> contributor.supports(client))
-                    .forEach(contributor -> clientsMap.put(client.getName(), contributor.contribute(client))));
-
-        });
+    private Map<String, Map<String, Object>> buildClientMap(final Collection<BaseClient> currentClients) {
+        val clientsMap = new TreeMap<String, Map<String, Object>>();
+        currentClients.forEach(client -> delegatedClientsEndpointContributors.ifAvailable(contributors ->
+            contributors
+                .stream()
+                .filter(contributor -> contributor.supports(client))
+                .forEach(contributor -> clientsMap.put(client.getName(), contributor.contribute(client)))));
         return clientsMap;
     }
 }
